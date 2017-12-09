@@ -17,6 +17,7 @@ export default function ({
             elm.textContent = name;
             elm.style.float = "left";
             elm.style.color = "#0026ff";
+            elm.style.textAlign = "center";
             elm.style.font = "30px Consolas";
             elm.style.border = "1px solid #0026ff";
             elm.style.margin = "1px";
