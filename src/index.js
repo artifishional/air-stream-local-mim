@@ -1,4 +1,17 @@
-const win = window.open(null, null, { resizable: true, menubar: 0, width: 5, height: 5 });
+function join(obj) {
+    return Object.keys(obj).map( key => key + "=" + obj[key] ).join(",");
+}
+
+const win = window.open(null, null, join({
+    directories: "no",
+    titlebar: "no",
+    toolbar: "no",
+    location: "no",
+    status: "no",
+    menubar: "no",
+    scrollbars: "no",
+    resizable: "no",
+}));
 
 window.addEventListener('unload', function(event) {
     win.close();
@@ -17,6 +30,7 @@ export default function ({
             elm.textContent = name;
             elm.style.float = "left";
             elm.style.color = "#0026ff";
+            elm.style.textAlign = "center";
             elm.style.font = "30px Consolas";
             elm.style.border = "1px solid #0026ff";
             elm.style.margin = "1px";
