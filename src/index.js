@@ -2,7 +2,7 @@ function join(obj) {
     return Object.keys(obj).map( key => key + "=" + obj[key] ).join(",");
 }
 
-const win = window.open(null, null, join({
+const win = window.open("", "_blank", join({
     directories: "no",
     titlebar: "no",
     toolbar: "no",
@@ -18,8 +18,8 @@ window.addEventListener('unload', function(event) {
 });
 
 export default function ({
-     settings: {button: {size = 40} = {}, width = 10, height = 10} = {}, buttons
-} = {}) {
+                             settings: {button: {size = 40} = {}, width = 10, height = 10} = {}, buttons
+                         } = {}) {
 
     win.resizeTo(width * size, height * size);
 
