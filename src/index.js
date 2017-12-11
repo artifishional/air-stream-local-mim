@@ -1,7 +1,28 @@
+/**
+ * @module stream
+ */
+
 function join(obj) {
     return Object.keys(obj).map( key => key + "=" + obj[key] ).join(",");
 }
 
+/**
+ * Create a window
+ * @param {Object} args
+ * @param {Object} args.settings
+ * @param {Boolean} [args.settings.windowed=true]
+ * @param {Object} args.settings.button
+ * @param {Number} [args.settings.button.size=40]
+ * @param {Number} [args.settings.width=10]
+ * @param {Number} [args.settings.height=10]
+ * @param {Object[]} args.buttons
+ * @param {Object} args.buttons[].size
+ * @param {Number} args.buttons[].size.x
+ * @param {Number} args.buttons[].size.y
+ * @param {string} args.buttons[].name
+ * @param {Function} args.buttons[].onclick
+ * @returns {Function}
+ */
 export default function ({
      settings: {button: {size = 40} = {}, width = 10, height = 10, windowed = true} = {}, buttons
  } = {}) {

@@ -4,8 +4,14 @@
   "module": "src/index.js",
   "author": "/ai",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/artifishional/air-stream-local-mim"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artifishional/air-stream-local-mim"
+  },
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.config.json -R README.md"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
   }
 }
