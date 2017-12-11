@@ -1,7 +1,11 @@
 {
   "name": "air-stream-local-mim",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "module": "src/index.js",
   "author": "/ai",
-  "license": "MIT"
+  "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/artifishional/air-stream-local-mim"
+  }
 }
