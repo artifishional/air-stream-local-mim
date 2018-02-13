@@ -24,7 +24,9 @@ function join(obj) {
  * @returns {Function}
  */
 export default function ({
-     settings: {button: {size = 40} = {}, width = 10, height = 10, windowed = true} = {}, buttons
+        settings: {button: {size = 40} = {}, width = 10, height = 10, windowed = true} = {},
+        buttons,
+        oninit
  } = {}) {
 
     let target;
@@ -57,6 +59,8 @@ export default function ({
     }
 
     return function (emt) {
+
+        oninit && oninit(emt);
 
         buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }) => {
             const elm = document.createElement("div");
