@@ -32,7 +32,7 @@ export default function ({
     let target;
 
     if(windowed) {
-        const win = window.open(null, null, join({
+        const win = window.open("", null, join({
             directories: "no",
             titlebar: "no",
             toolbar: "no",
