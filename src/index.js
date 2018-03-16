@@ -64,7 +64,7 @@ export default function ({
 
         buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }) => {
             const elm = document.createElement("div");
-            elm.textContent = name;
+            elm.innerHTML = name;
             elm.style.float = "left";
             elm.style.color = "#0026ff";
             elm.style.textAlign = "center";
