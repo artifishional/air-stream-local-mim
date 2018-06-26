@@ -44,9 +44,6 @@ export default function ({
             width: (width+1) * size,
             height: height * size
         }));
-        window.addEventListener('unload', function(event) {
-            win.close();
-        });
         target = win.document.body;
     }
     else {
@@ -62,8 +59,12 @@ export default function ({
 
         oninit && oninit(emt);
 
-        buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }) => {
-            const elm = document.createElement("div");
+        buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }, i) => {
+            let elm = target.querySelector(`#btn_${i}`);
+            if(!elm) {
+                elm = document.createElement("div");
+            }
+            elm.id = `btn_${i}`;
             elm.innerHTML = name;
             elm.style.float = "left";
             elm.style.color = "#0026ff";
