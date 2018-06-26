@@ -41,7 +41,7 @@ export default function ({
             menubar: "no",
             scrollbars: "no",
             resizable: "no",
-            width: width * size,
+            width: (width+1) * size,
             height: height * size
         }));
         window.addEventListener('unload', function(event) {
