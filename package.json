@@ -9,6 +9,7 @@
     "url": "https://github.com/artifishional/air-stream-local-mim"
   },
   "scripts": {
+    "patch": "npm version patch && npm publish && git push origin",
     "docs": "jsdoc -c jsdoc.config.json -R README.md"
   },
   "devDependencies": {
