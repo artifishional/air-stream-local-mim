@@ -8,29 +8,29 @@
    
    ```js
    
-   import {Observable} from 'air-stream';
-   import stream from "air-stream-local-mim";
+   import { stream } from 'air-stream';
+   import dbg from "air-stream-local-mim";
    
    //... //
    
    {
-       stream: new Observable(stream({
+       dbg({
+           stream,
            settings: { windowed: false },
            buttons: [ {
                name: "01",
-               onclick: e => {
-                   rand_values = [...rand_values, 1];
-                   e.emit({
+               onclick: emt => {
+                   values = [...values, 1];
+                   emt({
                        [type]: {
-                           rand_stage: 2,
-                           game_id: 77,
-                           rand_values,
+                           /** stream content */
+                           sum: 10
                        }
                    });
                },
                size: {x: 1, y: 1},
            }]
-       })),
+       })
    }
    
    ```
