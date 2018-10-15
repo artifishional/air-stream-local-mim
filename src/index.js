@@ -71,31 +71,33 @@ export default ( {
 
         oninit && oninit(emt);
 
-        hook.add( ({ sections}) => {
-            if(sections){ target.innerHTML = ""};
-            sections && buttons.map( ({section,name, onclick, size: {x = 1, y = 1 } = {} }, i) => {
-                const elm = document.createElement("div");
-                elm.innerHTML = name;
-                elm.style.float = "left";
-                elm.style.color = "#0026ff";
-                elm.style.textAlign = "center";
-                elm.style.font = "30px Consolas";
-                elm.style.border = "1px solid #0026ff";
-                elm.style.margin = "1px";
-                elm.style.width = `${x * size + (x-1)*4 }px`;
-                elm.style.height = `${y * size + (y-1)*4 }px`;
-                elm.style.lineHeight = `${y * size}px`;
-                elm.style.cursor = "pointer";
-                if(!sections[section]){
-                    elm.style.backgroundColor = "#999999";
-                    elm.style.pointerEvents = "none";
-                }
-                elm.addEventListener("click", () => onclick(emt));
-                return elm;
-            } )
-                .forEach( elm => {
-                    target.appendChild(elm)
-                });
+        hook.add( ({ action }) => {
+            if( action === "set-state-active" ) {
+                target.innerHTML = "";
+                buttons.map(({section, name, onclick, size: {x = 1, y = 1} = {}}, i) => {
+                    const elm = document.createElement("div");
+                    elm.innerHTML = name;
+                    elm.style.float = "left";
+                    elm.style.color = "#0026ff";
+                    elm.style.textAlign = "center";
+                    elm.style.font = "30px Consolas";
+                    elm.style.border = "1px solid #0026ff";
+                    elm.style.margin = "1px";
+                    elm.style.width = `${x * size + (x - 1) * 4 }px`;
+                    elm.style.height = `${y * size + (y - 1) * 4 }px`;
+                    elm.style.lineHeight = `${y * size}px`;
+                    elm.style.cursor = "pointer";
+                    if (!sections[section]) {
+                        elm.style.backgroundColor = "#999999";
+                        elm.style.pointerEvents = "none";
+                    }
+                    elm.addEventListener("click", () => onclick(emt));
+                    return elm;
+                })
+                    .forEach(elm => {
+                        target.appendChild(elm)
+                    });
+            }
         } );
 
     });
