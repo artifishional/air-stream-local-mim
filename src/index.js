@@ -71,9 +71,9 @@ export default ( {
 
         oninit && oninit(emt);
 
-        hook.add( ({ btns}) => {
-            if(btns){ target.innerHTML = ""};
-            btns && buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }, i) => {
+        hook.add( ({ sections}) => {
+            if(sections){ target.innerHTML = ""};
+            sections && buttons.map( ({section,name, onclick, size: {x = 1, y = 1 } = {} }, i) => {
                 const elm = document.createElement("div");
                 elm.innerHTML = name;
                 elm.style.float = "left";
@@ -86,10 +86,9 @@ export default ( {
                 elm.style.height = `${y * size + (y-1)*4 }px`;
                 elm.style.lineHeight = `${y * size}px`;
                 elm.style.cursor = "pointer";
-                const isNotActive = btns.find(x => x.btn === i).state
-                if(isNotActive){
-                    elm.style.backgroundColor = "#999999"
-                    elm.style.pointerEvents = "none"
+                if(!sections[section]){
+                    elm.style.backgroundColor = "#999999";
+                    elm.style.pointerEvents = "none";
                 }
                 elm.addEventListener("click", () => onclick(emt));
                 return elm;
