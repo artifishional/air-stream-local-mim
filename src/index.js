@@ -69,12 +69,11 @@ export default ( {
             throw "unwindowed mode now is unsupported"
         }
 
-
         oninit && oninit(emt);
 
-        hook.add( ({status}) => {
-            target.innerHTML = "";
-            status && buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }) => {
+        hook.add( ({ btns}) => {
+            if(btns){ target.innerHTML = ""};
+            btns && buttons.map( ({name, onclick, size: {x = 1, y = 1 } = {} }, i) => {
                 const elm = document.createElement("div");
                 elm.innerHTML = name;
                 elm.style.float = "left";
@@ -87,9 +86,7 @@ export default ( {
                 elm.style.height = `${y * size + (y-1)*4 }px`;
                 elm.style.lineHeight = `${y * size}px`;
                 elm.style.cursor = "pointer";
-                const isNotActive = (status === "pending" && name !== "end bets") ||
-                    (status === "playing" && typeof(name) !== "number") ||
-                    (typeof(status) === "number" && name !== "end game") || (status === "finished")
+                const isNotActive = btns.find(x => x.btn === i).state
                 if(isNotActive){
                     elm.style.backgroundColor = "#999999"
                     elm.style.pointerEvents = "none"
@@ -99,8 +96,7 @@ export default ( {
             } )
                 .forEach( elm => {
                     target.appendChild(elm)
-                })
-            ;
+                });
         } );
 
     });
