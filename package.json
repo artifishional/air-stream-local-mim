@@ -1,6 +1,6 @@
 {
   "name": "air-stream-local-mim",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "module": "src/index.js",
   "author": "/ai",
   "license": "MIT",
