@@ -87,7 +87,7 @@ export default ( {
                     elm.style.height = `${y * size + (y - 1) * 4 }px`;
                     elm.style.lineHeight = `${y * size}px`;
                     elm.style.cursor = "pointer";
-                    if(names[name] === false || names[name] === undefined && !sections[section] === false) {
+                    if(names[name] === false || names[name] === undefined && sections[section] === false) {
                         elm.style.backgroundColor = "#999999";
                         elm.style.pointerEvents = "none";
                     }
