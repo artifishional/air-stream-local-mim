@@ -71,7 +71,7 @@ export default ( {
 
         oninit && oninit(emt);
 
-        hook.add( ({ action, sections,names }) => {
+        hook.add( ({ action, sections = {}, names = {} }) => {
             if( action === "set-state-active" ) {
                 target.innerHTML = "";
                 buttons.map(({section, name, onclick, size: {x = 1, y = 1} = {}}, i) => {
