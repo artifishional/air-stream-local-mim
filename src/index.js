@@ -74,7 +74,7 @@ export default ( {
         hook.add( ({ action, betstate, sections = {}, names = {} }) => {
             if( action === "set-state-active" ) {
                 target.innerHTML = "";
-                buttons.map(({section, name, onclick, size: {x = 1, y = 1} = {}}, i) => {
+                buttons.map(({section, type = "button", name, onclick, size: {x = 1, y = 1} = {}}, i) => {
                     const elm = document.createElement("div");
                     elm.innerHTML = name ;
                     elm.style.float = "left";
@@ -91,14 +91,13 @@ export default ( {
                         elm.style.backgroundColor = "#999999";
                         elm.style.pointerEvents = "none";
                     }
-                    if(section === "enable_bet"){
+                    if(type === "checkbox"){
                         elm.style.pointerEvents = "";
                         elm.style.backgroundColor = sections[section] ? "#3F5CFF" : "#ffffff";
                         elm.innerHTML = "";
                         let innerElm = document.createElement("div");
                         innerElm.innerHTML = name;
                         innerElm.style.pointerEvents = "none";
-                        innerElm.style.transform="translateX(40px)";
                         elm.appendChild(innerElm)
                     }
                     elm.addEventListener("click", () => onclick(emt));

@@ -18,6 +18,7 @@
            stream,
            settings: { windowed: false },
            buttons: [ {
+               type: "btn",//||"checkbox",
                name: "01",
                onclick: emt => {
                    values = [...values, 1];
