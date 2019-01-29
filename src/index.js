@@ -71,7 +71,7 @@ export default ( {
 
         oninit && oninit(emt);
 
-        hook.add( ({ action, sections,names }) => {
+        hook.add( ({ action, betstate, sections = {}, names = {} }) => {
             if( action === "set-state-active" ) {
                 target.innerHTML = "";
                 buttons.map(({section, name, onclick, size: {x = 1, y = 1} = {}}, i) => {
@@ -87,13 +87,19 @@ export default ( {
                     elm.style.height = `${y * size + (y - 1) * 4 }px`;
                     elm.style.lineHeight = `${y * size}px`;
                     elm.style.cursor = "pointer";
-                    if(names[name]){
+                    if(names[name] === false || names[name] === undefined && sections[section] === false) {
                         elm.style.backgroundColor = "#999999";
                         elm.style.pointerEvents = "none";
                     }
-                    else if (!sections[section]) {
-                        elm.style.backgroundColor = "#999999";
-                        elm.style.pointerEvents = "none";
+                    if(section === "enable_bet"){
+                        elm.style.pointerEvents = "";
+                        elm.style.backgroundColor = sections[section] ? "#3F5CFF" : "#ffffff";
+                        elm.innerHTML = "";
+                        let innerElm = document.createElement("div");
+                        innerElm.innerHTML = name;
+                        innerElm.style.pointerEvents = "none";
+                        innerElm.style.transform="translateX(40px)";
+                        elm.appendChild(innerElm)
                     }
                     elm.addEventListener("click", () => onclick(emt));
                     return elm;
@@ -101,6 +107,10 @@ export default ( {
                     .forEach(elm => {
                         target.appendChild(elm)
                     });
+            }
+
+            if(action === "set-bets-status"){
+                target.children[target.children.length-1].style.backgroundColor = betstate ? "#3F5CFF" : "#ffffff";
             }
         } );
 
