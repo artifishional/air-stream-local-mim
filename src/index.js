@@ -94,11 +94,7 @@ export default ( {
                     if(type === "checkbox"){
                         elm.style.pointerEvents = "";
                         elm.style.backgroundColor = sections[section] ? "#3F5CFF" : "#ffffff";
-                        elm.innerHTML = "";
-                        let innerElm = document.createElement("div");
-                        innerElm.innerHTML = name;
-                        innerElm.style.pointerEvents = "none";
-                        elm.appendChild(innerElm)
+                        elm.innerHTML = name;
                     }
                     elm.addEventListener("click", () => onclick(emt));
                     return elm;
@@ -109,7 +105,7 @@ export default ( {
             }
 
             if(action === "set-bets-status"){
-                target.children[target.children.length-1].style.backgroundColor = betstate ? "#3F5CFF" : "#ffffff";
+                target.children[target.children.length-2].style.backgroundColor = betstate ? "#3F5CFF" : "#ffffff";
             }
         } );
 
