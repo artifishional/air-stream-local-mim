@@ -1,6 +1,6 @@
 {
   "name": "air-stream-local-mim",
-  "version": "0.2.4",
+  "version": "0.4.5",
   "module": "src/index.js",
   "author": "/ai",
   "license": "MIT",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "patch": "npm version patch && npm publish && git push origin",
+    "minor": "npm version minor && npm publish && git push origin",
     "docs": "jsdoc -c jsdoc.config.json -R README.md"
   },
   "devDependencies": {
