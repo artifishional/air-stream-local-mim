@@ -69,6 +69,8 @@ export default ({
 
     oninit && oninit(emt);
 
+    const listners = {};
+
     hook.add(({ action, sections = {}, names = {} }) => {
       if (action === 'set-state-active') {
         buttons.map(({ section, name, onclick, size: { x = 1, y = 1 } = {} }) => {
@@ -88,7 +90,6 @@ export default ({
             elm.style.lineHeight = `${y * size}px`;
             elm.style.cursor = 'pointer';
             elm.style.userSelect = 'none';
-            elm.addEventListener('click', () => onclick(emt));
             target.appendChild(elm);
           }
           if (names[name] === false || names[name] === undefined && sections[section] === false) {
@@ -97,6 +98,10 @@ export default ({
           } else {
             elm.style.backgroundColor = '#ffffff';
             elm.style.pointerEvents = 'auto';
+          }
+          if (!listners[name]) {
+            elm.addEventListener('click', () => onclick(emt));
+            listners[name] = true;
           }
         });
       }
