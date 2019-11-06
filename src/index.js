@@ -51,6 +51,9 @@ export default ({
         width: width * (size + 4),
         height: height * (size + 4)
       }));
+      window.onbeforeunload = () => {
+        win.close()
+      };
       if (win && win.document) {
         win.focus();
         target = win.document.body;
