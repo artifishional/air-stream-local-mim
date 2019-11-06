@@ -51,6 +51,9 @@ export default ({
         width: width * (size + 4),
         height: height * (size + 4)
       }));
+      window.onbeforeunload = () => {
+        win.close()
+      };
       if (win && win.document) {
         win.focus();
         target = win.document.body;
@@ -73,8 +76,12 @@ export default ({
 
     hook.add(({ action, sections = {}, names = {} }) => {
       if (action === 'set-state-active') {
+        const root = target.getRootNode();
+        if (root.getElementById === undefined) {
+          return;
+        }
         buttons.map(({ section, name, onclick, size: { x = 1, y = 1 } = {} }) => {
-          let elm = target.getRootNode().getElementById(name);
+          let elm = root.getElementById(name);
           if (!elm) {
             elm = document.createElement('div');
             elm.id = name;
